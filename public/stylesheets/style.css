@@ -1,0 +1,17 @@
+body {
+	background-color: #f4f4f4;
+}
+
+a {
+	color: #00b7ff;
+}
+
+.dropzone {
+	padding: 40px;
+	border-style: dashed !important;
+	border-width: 2px !important;
+}
+
+#mapHere {
+	height: 100vh;
+}

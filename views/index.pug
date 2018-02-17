@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  .row
+    .col
+      .container-fluid
+        .row
+          .col.p2
+            h1 DropHash
+            form.toHide
+              .form-group
+                select.form-control#precision
+                  - for (let i=5; i< 8; i++)
+                    option(value=i, selected=(i == 6)) Precisión #{i}
+        .row
+          .col
+            .row#hashHolder
+              .col-12.toHide.text-center
+                form#json.dropzone.border.border-dark(action='/file-upload')
+              .col-12(v-for="feature in features")
+                .card.mb-2
+                  .card-body
+                    h5.card-title {{feature.name}}
+                    p.card-text
+                      code(v-for="hash in feature.hashes") {{hash}} 
+              .col-12
+                button.btn.btn-success(v-if="features.length > 0",onclick="location.reload()") Cargar otro GeoJSON
+      .row.mt-2
+        .col
+          .p Creado por Alberto Rico
+    .col
+      #mapHere
+        v-map(:zoom='zoom', :center='center')
+          v-tilelayer(:url='url', :attribution='attribution')
+          v-rectangle(v-for="rectangle in rectangles", :bounds='rectangle.coords')
+            v-tooltip(:content="rectangle.hash", :options="options")
+      
+
+block scripts
+  script(src="javascripts/index.js")
