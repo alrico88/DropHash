@@ -4,6 +4,8 @@ const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const polyhash = require('geohash-poly');
 const fs = require('fs');
+const reproject = require('reproject');
+const epsg = require('epsg');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,6 +27,7 @@ router.post('/file-upload', upload.single('file'), async (req, res) => {
 async function getAllHashes(path, precision) {
 	let file = fs.readFileSync(path);
 	let json = JSON.parse(file);
+	json = reproject.toWgs84(json, undefined, epsg);
 
 	let promisesArray = [];
 
