@@ -44,7 +44,7 @@ let vueMap = new Vue({
 		return {
 			zoom: 13,
 			center: [47.41322, -1.219482],
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+			url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
 			attribution:
 				'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 			options: {permanent: false},
