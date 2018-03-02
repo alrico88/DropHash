@@ -1,0 +1,20 @@
+.modal#hashHolder(tabindex="-1" role="dialog")
+    .modal-dialog.modal-lg(role="document")
+        .modal-content
+            .modal-header
+                h5.modal-title Hashes incluidos en el GeoJSON
+                button.close(type="button" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") ×
+            .modal-body
+                nav.nav.nav-pills.mb-1
+                    a.dataDisplayChanger.nav-link.nav-item.active(href="#", data-display="split") Desglosado
+                    a.dataDisplayChanger.nav-link.nav-item(href="#", data-display="join") Junto
+                .card.mb-2(v-for="feature, index in items()")
+                    .card-body
+                        h5.card-title {{feature.name}}
+                        .card-text
+                            ul.list-inline.btn-copy(v-bind:id="'feature_' + index", v-bind:data-clipboard-text="feature.hashes.join(' ')")
+                                li.list-inline-item(v-for="hash in feature.hashes") 
+                                    code {{hash}}
+            .modal-footer
+                button.btn.btn-secondary(type="button" data-dismiss="modal") Cerrar

@@ -1,0 +1,11 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.justify-content-between
+    a.navbar-brand(href="#") DropHash 
+        small por Alberto Rico
+    form.form-inline
+        select.form-control#precision
+            - for (let i=4; i< 8; i++)
+                option(value=i, selected=(i == 6)) Precisión #{i}
+        input.form-control#fileInput.ml-1(type="file", name="fileInput")
+        button.btn.btn-primary.ml-1(data-toggle="modal", data-target="#hashHolder", type="button") 
+            i.fa.fa-spinner.fa-spin#loadingSpinner(style="display: none")
+            |  Ver resultados
